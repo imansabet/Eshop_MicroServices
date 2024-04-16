@@ -1,5 +1,4 @@
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
 builder.Services.AddCarter();
 
@@ -13,6 +12,7 @@ builder.Services.AddMarten(opts =>
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
 
+var app = builder.Build();
 app.MapCarter();
 
 app.Run();

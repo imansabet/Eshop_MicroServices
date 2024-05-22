@@ -55,7 +55,7 @@ services:
       - ConnectionStrings__Redis=distributedcache:6379
     depends_on:
         - basketdb
-        - distributedcach 
+        - distributedcache 
     ports:
       - "6001:8080"
       - "6061:8081"

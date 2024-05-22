@@ -1,4 +1,5 @@
 using BuildingBlocks.Behaviors;
+using BuildingBlocks.Exceptions.Handler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +25,13 @@ builder.Services.AddMarten(opts =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository,BasketRepository>();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 //Add services to the container.
 var app = builder.Build();
 
 //Configure http request pipeline
 app.MapCarter();
+app.UseExceptionHandler(options => { });
 
 app.Run();
